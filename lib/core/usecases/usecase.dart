@@ -11,13 +11,4 @@ abstract class Params extends Equatable {
   List<Object> get props => [];
 }
 
-class LoginParams extends Params {
-  final String email;
-  final String password;
-  LoginParams({
-    required this.email,
-    required this.password,
-  });
-}
-
 class NoParams extends Params {}
