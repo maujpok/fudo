@@ -23,9 +23,3 @@ extension Navigation on BuildContext {
     Navigator.of(this).pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
   }
 }
-
-extension HideKeyboard on BuildContext {
-  void hideKeyboard() {
-    FocusScope.of(this).unfocus();
-  }
-}
