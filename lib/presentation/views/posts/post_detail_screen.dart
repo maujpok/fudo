@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fudo/app/ui_style.dart';
 import 'package:fudo/data/models/_models.dart';
-import 'package:gap/gap.dart';
+import 'package:fudo/presentation/views/posts/bloc/posts_bloc.dart';
 
 class PostDetailScreen extends StatelessWidget {
   const PostDetailScreen({super.key, required this.post});
@@ -12,9 +13,7 @@ class PostDetailScreen extends StatelessWidget {
     const textStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: AppSizes.textMax);
 
     return Scaffold(
-      
       appBar: AppBar(
-        
         title: const Text('Post Details'),
       ),
       body: Padding(
@@ -25,15 +24,19 @@ class PostDetailScreen extends StatelessWidget {
           children: [
             const Text('Post Title'),
             Text(post.title ?? '', style: textStyle),
-            const Gap(AppSizes.paddingDefault),
+            const Divider(),
             const Text('Post Body'),
             Text(post.body ?? '', style: textStyle),
-            const Gap(AppSizes.paddingDefault),
+            const Divider(),
             const Text('Post Id'),
             Text(post.id.toString(), style: textStyle),
-            const Gap(AppSizes.paddingDefault),
+            const Divider(),
             const Text('From User'),
-            Text(post.userId.toString(), style: textStyle),
+            BlocBuilder<PostsBloc, PostsState>(
+              builder: (context, state) {
+                return Text(state.getUserNameById(post.userId ?? 0), style: textStyle);
+              },
+            ),
           ],
         ),
       ),

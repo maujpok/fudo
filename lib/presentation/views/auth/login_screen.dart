@@ -46,9 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 160,
                 height: 160,
                 child: ClipOval(
-                  child: Image.network(
-                    fudoImageUrl,
-                  ),
+                  child: Image.asset(fudoImagePath),
                 ),
               ),
               const SizedBox(height: AppSizes.paddingMax),
