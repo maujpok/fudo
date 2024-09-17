@@ -1,0 +1,1 @@
+export 'package:fudo/presentation/views/home_screen.dart';
