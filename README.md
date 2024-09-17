@@ -1,16 +1,11 @@
-# fudo
+# Fudo App
 
-A new Flutter project.
+An user-friendly app that allows users to read posts from jsonplaceholder.com, see any post in detail, create a new one, and interactive searching of posts.
+Also, includes a low authentication, simulated following all the necessary flow like in a real case.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To build an APK to testing, you need to follow the next steps:
+ - Create a file named ".env" in the root of project and write it with the required credentials (USER and PASS)
+ - Execute the following command: flutter build apk --release --dart-define-from-file=.env
+ - When build finish, you can get the apk from: build/app/outputs/flutter-apk/app-release.apk
