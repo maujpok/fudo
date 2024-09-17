@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fudo/app/ui_style.dart';
-import 'package:fudo/data/models/post_model.dart';
+import 'package:fudo/data/models/_models.dart';
 import 'package:gap/gap.dart';
 
 class PostDetailScreen extends StatelessWidget {

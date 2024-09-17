@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fudo/app/extensions.dart';
 import 'package:fudo/app/routes.dart';
-import 'package:fudo/data/models/post_model.dart';
+import 'package:fudo/data/models/_models.dart';
 
 class PostWidget extends StatelessWidget {
   const PostWidget({

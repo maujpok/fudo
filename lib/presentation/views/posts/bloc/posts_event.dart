@@ -4,6 +4,8 @@ class PostsEvent {}
 
 class GetPostsEvent extends PostsEvent {}
 
+class GetUsersEvent extends PostsEvent {}
+
 class CreatePostEvent extends PostsEvent {
   final String title;
   final String body;
