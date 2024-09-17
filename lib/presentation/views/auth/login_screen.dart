@@ -17,8 +17,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController(text: 'challenge@fu.do');
-  final _passwordController = TextEditingController(text: 'password');
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isPasswordHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,24 +27,21 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state.isAuthenticatedSuccess) {
           ToastHandler.showSuccessToast('Login Successful');
-          context.pushNamed(RoutePath.home);
-          //TODO: replace with below lines
-          // _emailController.clear();
-          // _passwordController.clear();
-          // context.pushReplacementNamed(RoutePath.home);
+          _emailController.clear();
+          _passwordController.clear();
+          context.pushReplacementNamed(RoutePath.home);
         }
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: AppColors.secondaryColor,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                 'Welcome to Fudo Challenge!',
-                style: TextStyle(fontSize: AppSizes.bigText),
+                style: TextStyle(fontSize: AppSizes.textBig),
               ),
-              const SizedBox(height: AppSizes.maxPadding),
+              const SizedBox(height: AppSizes.paddingMax),
               SizedBox(
                 width: 160,
                 height: 160,
@@ -53,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: AppSizes.maxPadding),
+              const SizedBox(height: AppSizes.paddingMax),
               Form(
                 key: _formKey,
                 child: Padding(
@@ -84,15 +82,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextFormField(
                         controller: _passwordController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            labelText: 'Password',
-                            labelStyle: TextStyle(color: AppColors.defaultTextColor),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: AppColors.primaryColor,
-                              ),
-                            )),
+                        obscureText: _isPasswordHidden,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: const TextStyle(color: AppColors.defaultTextColor),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordHidden ? Icons.visibility : Icons.visibility_off,
+                              color: AppColors.primaryColor,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordHidden = !_isPasswordHidden;
+                              });
+                            },
+                          ),
+                        ),
                         validator: (passwordInput) {
                           if (passwordInput == null || passwordInput.isEmpty) {
                             return 'Please enter your password';
@@ -100,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: AppSizes.maxPadding),
+                      const SizedBox(height: AppSizes.paddingMax),
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
