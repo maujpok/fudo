@@ -17,6 +17,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     on<GetPostsEvent>(_onGetPostsEvent);
     on<CreatePostEvent>(_onCreatePostEvent);
     on<GetUsersEvent>(_onGetUsersEvent);
+    on<FilterPostsByUserNameEvent>(_onFilterPostsByUserNameEvent);
+    on<ResetPostsSearchEvent>(_onResetPostsSearchEvent);
   }
   FutureOr<void> _onGetPostsEvent(
     GetPostsEvent event,
@@ -33,7 +35,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         emit(
           state.copyWith(
             loading: false,
-            postList: posts,
+            postListMemory: posts,
+            postListFiltered: posts,
           ),
         );
         if (state.userList == null) {
@@ -49,7 +52,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   ) async {
     emit(state.copyWith(loading: true));
     final users = await _postRepository.getUsers();
-    
+
     users.fold(
       (failure) {
         emit(state.copyWith(loading: false));
@@ -82,7 +85,31 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
       (success) {
         emit(state.copyWith(loading: false));
         ToastHandler.showSuccessToast('Post created successfully');
+        event.onPostCreated.call();
       },
     );
+  }
+
+  FutureOr<void> _onFilterPostsByUserNameEvent(
+    FilterPostsByUserNameEvent event,
+    Emitter<PostsState> emit,
+  ) {
+    final findUsers = state.userList?.where((user) => (user.name ?? '').toLowerCase().contains(event.query.toLowerCase())).toList();
+
+    if (findUsers == null || findUsers.isEmpty) {
+      emit(state.copyWith(postListFiltered: []));
+    } else {
+      final deepList = [...state.postListMemory ?? <PostModel>[]];
+      emit(state.copyWith(
+        postListFiltered: deepList.where((post) => findUsers.map((user) => user.id).contains(post.userId)).toList(),
+      ));
+    }
+  }
+
+  FutureOr<void> _onResetPostsSearchEvent(
+    ResetPostsSearchEvent event,
+    Emitter<PostsState> emit,
+  ) {
+    emit(state.copyWith(postListFiltered: [...state.postListMemory ?? []]));
   }
 }

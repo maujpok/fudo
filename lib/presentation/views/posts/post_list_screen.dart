@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fudo/app/extensions.dart';
@@ -16,11 +17,13 @@ class PostListScreen extends StatefulWidget {
 }
 
 class _PostListScreenState extends State<PostListScreen> {
+  final _searchController = TextEditingController();
   bool _showExitWarning = true;
+  Timer? _debounce;
 
   @override
   void initState() {
-    if (context.read<PostsBloc>().state.postList == null) {
+    if (context.read<PostsBloc>().state.postListMemory == null) {
       context.read<PostsBloc>().add(GetPostsEvent());
     }
     super.initState();
@@ -54,13 +57,8 @@ class _PostListScreenState extends State<PostListScreen> {
                 return const Center(
                   child: CircularProgressIndicator(
                     color: AppColors.primaryColor,
-                    strokeWidth: 1.2,
+                    strokeWidth: 1.5,
                   ),
-                );
-              }
-              if (state.postList != null && (state.postList ?? []).isEmpty) {
-                return const Center(
-                  child: Text('No Posts'),
                 );
               }
 
@@ -69,27 +67,55 @@ class _PostListScreenState extends State<PostListScreen> {
                   Padding(
                     padding: const EdgeInsets.all(AppSizes.paddingMin),
                     child: TextField(
+                      controller: _searchController,
                       decoration: InputDecoration(
                         hintText: 'Search posts...',
                         prefixIcon: const Icon(Icons.search),
+                        suffixIcon: IconButton(
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.text = '';
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            context.read<PostsBloc>().add(ResetPostsSearchEvent());
+                          },
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(AppSizes.borderRadiusDefault),
                         ),
                       ),
-                      onChanged: (query) async {},
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) => const Gap(AppSizes.paddingMin),
-                      itemCount: (state.postList ?? []).length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        final post = state.postList?[index];
-                        return PostWidget(post: post);
+                      onChanged: (query) async {
+                        if (query.isEmpty) {
+                          context.read<PostsBloc>().add(ResetPostsSearchEvent());
+                        }
+                        if (query.length < 3) return;
+
+                        if (_debounce?.isActive ?? false) _debounce?.cancel();
+                        _debounce = Timer(const Duration(milliseconds: 1000), () {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          context.read<PostsBloc>().add(FilterPostsByUserNameEvent(query: query));
+                        });
                       },
                     ),
                   ),
+                  if (state.postListFiltered != null && (state.postListFiltered ?? []).isEmpty)
+                    const Expanded(
+                      child: Center(
+                        child: Text('No Posts Found'),
+                      ),
+                    )
+                  else
+                    Expanded(
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) => const Gap(AppSizes.paddingMin * 1.5),
+                        itemCount: (state.postListFiltered ?? []).length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final post = state.postListFiltered?[index];
+                          return PostWidget(post: post);
+                        },
+                      ),
+                    ),
+                  const Gap(AppSizes.paddingDefault)
                 ],
               );
             },
