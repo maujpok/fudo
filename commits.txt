@@ -1,3 +1,21 @@
+commit 6bdcb8b2636e7a743e063afcaa4165a54fdd10c7
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 17:19:20 2024 -0300
+
+    updated readme
+
+commit dd7c699c28e3b9ea4b3640d2be04eb9343293d26
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 17:08:30 2024 -0300
+
+    added internet permission on manifest
+
+commit ee5f3fd637a6ba7ab323c228d1d376f4b5bef0d1
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 17:00:41 2024 -0300
+
+    added commits log
+
 commit 256c74598c69b93bd1b1580ff9d3661116bad953
 Author: Mauricio <maujpok@gmail.com>
 Date:   Tue Sep 17 17:00:03 2024 -0300
