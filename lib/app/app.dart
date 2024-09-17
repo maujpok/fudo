@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fudo/app/injection.dart';
 import 'package:fudo/app/routes.dart';
 import 'package:fudo/presentation/views/auth/bloc/auth_bloc.dart';
+import 'package:fudo/presentation/views/posts/bloc/posts_bloc.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,9 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(
-          create: (context) => sl<AuthBloc>(),
-        ),
+        BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>()),
+        BlocProvider<PostsBloc>(create: (context) => sl<PostsBloc>()),
       ],
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

@@ -14,15 +14,15 @@ class AppColors {
 class AppSizes {
   AppSizes._();
 
-  static const double minPadding = 8.0;
-  static const double defaultPadding = 16.0;
-  static const double maxPadding = 32.0;
+  static const double paddingMin = 8.0;
+  static const double paddingDefault = 16.0;
+  static const double paddingMax = 32.0;
 
-  static const double defaultBorderRadius = 8.0;
-  static const double maxBorderRadius = 16.0;
+  static const double borderRadiusDefault = 8.0;
+  static const double borderRadiusMax = 16.0;
 
-  static const double defaultText = 12.0;
-  static const double maxText = 16.0;
-  static const double bigText = 24.0;
+  static const double textDefault = 12.0;
+  static const double textMax = 16.0;
+  static const double textBig = 24.0;
 
 }
