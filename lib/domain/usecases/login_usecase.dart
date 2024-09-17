@@ -13,3 +13,12 @@ class LoginUsecase implements UseCase<bool, LoginParams> {
     return await _authRepository.login(params.email, params.password);
   }
 }
+
+class LoginParams extends Params {
+  final String email;
+  final String password;
+  LoginParams({
+    required this.email,
+    required this.password,
+  });
+}

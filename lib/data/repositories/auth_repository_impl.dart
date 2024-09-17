@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:fudo/core/error/exceptions.dart';
 import 'package:fudo/core/error/failures.dart';
 import 'package:fudo/core/network/network_info.dart';
 import 'package:fudo/domain/api/auth_api.dart';
