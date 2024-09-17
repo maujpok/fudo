@@ -1,0 +1,113 @@
+commit 256c74598c69b93bd1b1580ff9d3661116bad953
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 17:00:03 2024 -0300
+
+    added env and apk
+
+commit 89053576accaf872f0f4d9aa3d98b03e2e3f0ce2
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 16:35:48 2024 -0300
+
+    upgrades mixed
+
+commit cf94b009284a0fa7231c4425b0853b28b7144e9f
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 16:35:21 2024 -0300
+
+    added post search feature
+
+commit dc41203b4414c24ce7409a2889eecae2eef4a3f7
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 16:34:51 2024 -0300
+
+    added create post screen
+
+commit c24294c94858c7dfa9c5f7b3eb41d8525e8b2ad1
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 16:34:10 2024 -0300
+
+    added fudo logo asset
+
+commit 4d9aefe985111243cfb40a9fc91aa15b3f5c0e6e
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 15:12:26 2024 -0300
+
+    added get users
+
+commit c926c8c26a1ae750c817bd1ad777f79bb6343529
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:55:42 2024 -0300
+
+    upgraded login screen
+
+commit 8d501bec1c29185aa588157accc2c9d456aa2312
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:54:18 2024 -0300
+
+    added post list screen
+
+commit f1ec59148c42b589ab00ef51815d3186c479a09e
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:54:00 2024 -0300
+
+    added post detail screen
+
+commit 5245e4985376d2909029d5cab36d56ec233afd47
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:53:45 2024 -0300
+
+    upgraded toast handler
+
+commit 655c19b0d34ff239ffa64b9c35b4cb03e3627140
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:53:28 2024 -0300
+
+    fixes on login feature
+
+commit 78b1e7d4ee099694b1e24abf9654e3e39f059b00
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:53:08 2024 -0300
+
+    added posts bloc
+
+commit 596da5f276fcdb98d7ca04e908b60366da4d4dbb
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:52:43 2024 -0300
+
+    added posts business logic
+
+commit 6dea8a4bbd280f904057e477c3cc02ac994240ba
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 14:51:29 2024 -0300
+
+    added post feature to core
+
+commit 5e1fc8dd546ef7e57d78eb35d8f5c74b2d47c520
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 11:59:34 2024 -0300
+
+    login feature
+
+commit 63de675b3e18b59ee9f9ad385414951faf264330
+Author: Mauricio <maujpok@gmail.com>
+Date:   Tue Sep 17 09:51:32 2024 -0300
+
+    added routes, extensions, mockup login screen
+
+commit 1b7d3000993e8684dcf6e795c3f2ad733836a289
+Author: Mauricio Portillo <maujpok@Macbook-Pro.local>
+Date:   Tue Sep 17 08:21:04 2024 -0300
+
+    project structure
+
+commit 48612ede3f78a52ceba34fc74d0724bcfa8ff968
+Author: Mauricio Portillo <maujpok@Macbook-Pro.local>
+Date:   Tue Sep 17 07:13:30 2024 -0300
+
+    first commit
+
+commit ab7244d21f2463e2c8674951231471ede45bd917
+Author: Mauricio Portillo <maujpok@gmail.com>
+Date:   Tue Sep 17 07:06:52 2024 -0300
+
+    Initial commit
