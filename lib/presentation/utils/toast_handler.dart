@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fudo/app/ui_style.dart';
+import 'package:fudo/core/error/failures.dart';
 
 class ToastHandler implements Fluttertoast {
   ToastHandler._();
@@ -30,5 +31,11 @@ class ToastHandler implements Fluttertoast {
       backgroundColor: AppColors.warningColor,
       textColor: Colors.black,
     );
+  }
+
+  static void handleErrorToast(
+    Failure failure,
+  ) {
+    showErrorToast(getFailureMessage(getFailureType(failure)));
   }
 }
