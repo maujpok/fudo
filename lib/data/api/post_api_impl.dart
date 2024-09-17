@@ -53,15 +53,16 @@ class PostApiImpl extends DioBaseService implements PostApi {
       };
 
       final response = await dio.post('/posts', data: json.encode(data));
-      if (response.statusCode == HttpStatus.ok) {
+      if (response.statusCode == HttpStatus.created) {
         return true;
+      } else {
+        throw BadRequestFailure();
       }
-      throw ServerException();
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      return false;
+      throw ServerFailure();
     }
   }
 }
