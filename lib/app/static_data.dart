@@ -1,0 +1,1 @@
+const String fudoImageUrl = 'https://media.licdn.com/dms/image/v2/C4E0BAQFgRB_QnbsF4A/company-logo_200_200/company-logo_200_200/0/1630580805108/socialfudo_logo?e=1734566400&v=beta&t=Gn-N-SfAuk0GH0FeoEpldt0AuvJbZvU5Jb1vARbLPKQ';

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:fudo/presentation/views/_views.dart';
+import 'package:fudo/app/routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: RoutePath.login,
+        routes: routes,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
