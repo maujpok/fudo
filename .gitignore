@@ -12,6 +12,7 @@ migrate_working_dir/
 .fvm
 pubspec.lock
 .vscode/
+.env
 
 # IntelliJ related
 *.iml

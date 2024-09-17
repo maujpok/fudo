@@ -5,8 +5,8 @@ import 'package:fudo/app/routes.dart';
 import 'package:fudo/presentation/views/auth/bloc/auth_bloc.dart';
 import 'package:fudo/presentation/views/posts/bloc/posts_bloc.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FudoApp extends StatelessWidget {
+  const FudoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
