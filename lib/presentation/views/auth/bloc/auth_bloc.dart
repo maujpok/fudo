@@ -35,6 +35,4 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (success) => emit(state.copyWith(loading: false, isAuthenticatedSuccess: true)),
     );
   }
-
-
 }

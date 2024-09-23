@@ -1,19 +1,24 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fudo/core/usecases/usecase.dart';
 import 'package:fudo/data/models/_models.dart';
-import 'package:fudo/domain/repositories/post_repository.dart';
+import 'package:fudo/domain/usecases/post_usecases.dart';
 import 'package:fudo/presentation/utils/toast_handler.dart';
 
 part 'posts_event.dart';
 part 'posts_state.dart';
 
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
-  final PostRepository _postRepository;
+  final GetPostsUsecase getPostsUsecase;
+  final GetUsersUsecase getUsersUsecase;
+  final CreatePostUsecase createPostUsecase;
 
-  PostsBloc({required PostRepository postRepository})
-      : _postRepository = postRepository,
-        super(PostsState.initial()) {
+  PostsBloc({
+    required this.getPostsUsecase,
+    required this.getUsersUsecase,
+    required this.createPostUsecase,
+  }) : super(PostsState.initial()) {
     on<GetPostsEvent>(_onGetPostsEvent);
     on<CreatePostEvent>(_onCreatePostEvent);
     on<GetUsersEvent>(_onGetUsersEvent);
@@ -25,7 +30,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     Emitter<PostsState> emit,
   ) async {
     emit(state.copyWith(loading: true));
-    final posts = await _postRepository.getPosts();
+    final posts = await getPostsUsecase(NoParams());
     posts.fold(
       (failure) {
         emit(state.copyWith(loading: false));
@@ -51,7 +56,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     Emitter<PostsState> emit,
   ) async {
     emit(state.copyWith(loading: true));
-    final users = await _postRepository.getUsers();
+    final users = await getUsersUsecase(NoParams());
 
     users.fold(
       (failure) {
@@ -72,11 +77,11 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     Emitter<PostsState> emit,
   ) async {
     emit(state.copyWith(loading: true));
-    final response = await _postRepository.createPost(
+    final response = await createPostUsecase(CreatePostParams(
       title: event.title,
       body: event.body,
       userId: event.userId,
-    );
+    ));
     response.fold(
       (failure) {
         emit(state.copyWith(loading: false));

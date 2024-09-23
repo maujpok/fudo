@@ -29,7 +29,12 @@ Future<void> injectDependencies() async {
     ..registerLazySingleton<PostRepository>(() => PostRepositoryImpl(api: sl(), networkInfo: sl()))
     ..registerLazySingleton<LoginUsecase>(() => LoginUsecase(sl()))
     ..registerLazySingleton<GetPostsUsecase>(() => GetPostsUsecase(sl()))
+    ..registerLazySingleton<GetUsersUsecase>(() => GetUsersUsecase(sl()))
     ..registerLazySingleton<CreatePostUsecase>(() => CreatePostUsecase(sl()))
-    ..registerFactory(() => PostsBloc(postRepository: sl()))
+    ..registerFactory(() => PostsBloc(
+          createPostUsecase: sl(),
+          getPostsUsecase: sl(),
+          getUsersUsecase: sl(),
+        ))
     ..registerFactory(() => AuthBloc(loginUsecase: sl()));
 }

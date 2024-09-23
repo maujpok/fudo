@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:fudo/app/injection.dart';
 import 'package:fudo/core/error/failures.dart';
 import 'package:fudo/core/network/dio_base_service.dart';
 import 'package:fudo/data/models/_models.dart';
 import 'package:fudo/domain/api/post_api.dart';
 
-class PostApiImpl extends DioBaseService implements PostApi {
+class PostApiImpl implements PostApi {
+  final dioInstance = sl<DioBaseService>().dio;
+  
   @override
   Future<List<PostModel>> getPosts() async {
     try {
-      final response = await dio.get('/posts');
+      final response = await dioInstance.get('/posts');
       if (response.statusCode == HttpStatus.ok) {
         return getPostsResponseFromJson(response.data);
       }
@@ -26,7 +29,7 @@ class PostApiImpl extends DioBaseService implements PostApi {
   @override
   Future<List<UserModel>> getUsers() async {
     try {
-      final response = await dio.get('/users');
+      final response = await dioInstance.get('/users');
       if (response.statusCode == HttpStatus.ok) {
         return getUsersFromJson(response.data);
       }
@@ -52,7 +55,7 @@ class PostApiImpl extends DioBaseService implements PostApi {
         'userId': userId,
       };
 
-      final response = await dio.post('/posts', data: json.encode(data));
+      final response = await dioInstance.post('/posts', data: json.encode(data));
       if (response.statusCode == HttpStatus.created) {
         return true;
       } else {
